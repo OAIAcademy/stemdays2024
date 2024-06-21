@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 
-df = pd.read_excel("data/songs_with_predictions.csv")
+df = pd.read_csv("data/songs_with_predictions.csv")
 
 st.title("Descrizione dei dati")
 
