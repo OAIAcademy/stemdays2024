@@ -18,7 +18,8 @@ def plot_pie():
 
     plt.pie(
         df["tag"].value_counts(),
-        labels=df["tags"].value_counts().index
+        labels=df["tag"].value_counts().index,
+        autopct="%1.0f%%"
         )
     plt.show()
 
