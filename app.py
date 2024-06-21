@@ -12,13 +12,13 @@ def gli_artisti_piu_cercati() :
     col1, col2 = st.columns(2)
 
     with col1:
-        st.image(r"images\chrisbrown.jpg")
+        st.image("images/chrisbrown.jpg")
         espansione = st.expander("TOP 5 artisti più ascoltati")
         with espansione:
             st.text('lista')
 
     with col2:
-        st.image(r"images\bennyblanco.jpg")
+        st.image("images/bennyblanco.jpg")
         espansione = st.expander("TOP 5 artisti meno ascoltati")
         with espansione:
             st.text('lista')
@@ -27,13 +27,13 @@ def i_generi_piu_cercati():
     col1, col2 = st.columns(2)
 
     with col1:
-        st.image(r"images\pop.jpg", width=345)
+        st.image("images/pop.jpg", width=345)
         espansione = st.expander("Distribuzione per genere")
         with espansione:
             st.text('grafico')
 
     with col2:
-        st.image(r"images\rb.jpg", width=345)
+        st.image("images/rb.jpg", width=345)
         espansione = st.expander("TOP 5 canzoni più ascoltate")
         with espansione:
             st.text('lista')
