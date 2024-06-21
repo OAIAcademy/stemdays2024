@@ -17,7 +17,7 @@ def show_metrics():
 def plot_pie():
 
     plt.pie(
-        df["tags"].value_counts(), 
+        df["tag"].value_counts(),
         labels=df["tags"].value_counts().index
         )
     plt.show()
