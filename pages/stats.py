@@ -2,6 +2,8 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import pandas as pd
 
+st.set_option('deprecation.showPyplotGlobalUse', False)
+
 
 df = pd.read_csv("data/songs_with_prediction.csv")
 
@@ -30,6 +32,4 @@ col1.pyplot(pie)
 #col2 da definire
 
 col1, col2 = st.columns(2)
-col1 = st.button([]) #mettici le features
-pie = plot_pie()
-col1.pyplot(pie) #plotta i generi per features barplot
+#col1 = st.button([]) #mettici le features
