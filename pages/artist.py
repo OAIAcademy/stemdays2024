@@ -3,7 +3,7 @@ import pandas as pd
 from streamlit_carousel import carousel
 import pandas as pd
 
-df = pd.read_csv("data/songs_with_predictions.csv")
+df = pd.read_csv("data/songs_with_prediction.csv")
 
 
 def logo():

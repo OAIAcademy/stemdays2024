@@ -4,4 +4,4 @@ import pandas as pd
 
 st.title("Rete neurale")
 
-df = pd.read_csv("data/songs_with_predictions.csv")
+df = pd.read_csv("data/songs_with_prediction.csv")

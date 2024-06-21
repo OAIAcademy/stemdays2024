@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 
-df = pd.read_csv("data/songs_with_predictions.csv")
+df = pd.read_csv("data/songs_with_prediction.csv")
 
 st.title("Descrizione dei dati")
 
@@ -26,3 +26,8 @@ def plot_pie():
 col1, col2 = st.columns(2)
 pie = plot_pie()
 col1.pyplot(pie)
+#col2 da definire
+
+col1, col2 = st.columns(2)
+col1 = st.button([]) #mettici le features
+col1.pyplot() #plotta i generi per features barplot

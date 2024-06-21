@@ -3,7 +3,7 @@ from streamlit_carousel import carousel
 from streamlit_option_menu import option_menu
 import pandas as pd
 
-df = pd.read_csv("data/songs_with_predictions.csv")
+df = pd.read_csv("data/songs_with_prediction.csv")
 
 
 def introduzione():
