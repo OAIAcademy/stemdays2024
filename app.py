@@ -3,7 +3,7 @@ from streamlit_carousel import carousel
 from streamlit_option_menu import option_menu
 
 def introduzione():
-    st.image(r"images\MagicEraser_240620_165341.png")
+    st.image("images/MagicEraser_240620_165341.png")
 
 #def carosello_foto() :
 
