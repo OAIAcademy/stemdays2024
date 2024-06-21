@@ -1,6 +1,10 @@
 import streamlit as st
 from streamlit_carousel import carousel
 from streamlit_option_menu import option_menu
+import pandas as pd
+
+df = pd.read_excel("data/songs_with_predictions.csv")
+
 
 def introduzione():
     st.image("images/MagicEraser_240620_165341.png")
