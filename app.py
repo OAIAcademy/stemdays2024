@@ -3,7 +3,7 @@ from streamlit_carousel import carousel
 from streamlit_option_menu import option_menu
 
 def introduzione():
-    st.image(r"C:\Users\user\Desktop\rebecca stemdays webby\streamlit\images\MagicEraser_240620_165341.png")
+    st.image(r"C:\images\MagicEraser_240620_165341.png")
 
 #def carosello_foto() :
 
@@ -12,13 +12,13 @@ def gli_artisti_piu_cercati() :
     col1, col2 = st.columns(2)
 
     with col1:
-        st.image(r"C:\Users\user\Desktop\rebecca stemdays webby\streamlit\images\chrisbrown.jpg")
+        st.image(r"images\chrisbrown.jpg")
         espansione = st.expander("TOP 5 artisti più ascoltati")
         with espansione:
             st.text('lista')
 
     with col2:
-        st.image(r"C:\Users\user\Desktop\rebecca stemdays webby\streamlit\images\bennyblanco.jpg")
+        st.image(r"images\bennyblanco.jpg")
         espansione = st.expander("TOP 5 artisti meno ascoltati")
         with espansione:
             st.text('lista')
@@ -27,13 +27,13 @@ def i_generi_piu_cercati():
     col1, col2 = st.columns(2)
 
     with col1:
-        st.image(r"C:\Users\user\Desktop\rebecca stemdays webby\streamlit\images\pop.jpg", width=345)
+        st.image(r"images\pop.jpg", width=345)
         espansione = st.expander("Distribuzione per genere")
         with espansione:
             st.text('grafico')
 
     with col2:
-        st.image(r"C:\Users\user\Desktop\rebecca stemdays webby\streamlit\images\rb.jpg", width=345)
+        st.image(r"images\rb.jpg", width=345)
         espansione = st.expander("TOP 5 canzoni più ascoltate")
         with espansione:
             st.text('lista')
