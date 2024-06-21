@@ -3,13 +3,13 @@ import pandas as pd
 from streamlit_carousel import carousel
 
 def logo():
-    st.image(r"C:\Users\user\Desktop\rebecca stemdays webby\streamlit\images\MagicEraser_240620_165341.png")
+    st.image(r"images\MagicEraser_240620_165341.png")
 
 def banner_info ():
     col1, col2 = st.columns(2)
 
     with col1:
-        st.image(r"C:\Users\user\Desktop\rebecca stemdays webby\streamlit\images\chrisbrown.jpg", width=230) #immagine se nei top 5
+        st.image(r"images\chrisbrown.jpg", width=230) #immagine se nei top 5
 
     with col2:
         st.title("Chris Brown") #nome persona
@@ -18,19 +18,19 @@ def banner_info ():
 
 def word_cloud ():
     #codice word cloud, immagine ?
-    st.image(r"C:\Users\user\Desktop\rebecca stemdays webby\streamlit\images\wcdiprova.gif")
+    st.image(r"images\wcdiprova.gif")
 
 def primi_grafici() :
     col1, col2 = st.columns(2)
 
     with col1:
-        st.image(r"C:\Users\user\Desktop\rebecca stemdays webby\streamlit\images\chrisbrown.jpg")
+        st.image(r"images\chrisbrown.jpg")
         espansione = st.expander("TOP 3 HITS")
         with espansione:
             st.text('lista')
 
     with col2:
-        st.image(r"C:\Users\user\Desktop\rebecca stemdays webby\streamlit\images\bennyblanco.jpg")
+        st.image(r"images\bennyblanco.jpg")
         espansione = st.expander("TOP 3 FLOPS")
         with espansione:
             st.text('lista')
@@ -39,13 +39,13 @@ def secondi_grafici():
     col1, col2 = st.columns(2)
 
     with col1:
-        st.image(r"C:\Users\user\Desktop\rebecca stemdays webby\streamlit\images\pop.jpg", width=345)
+        st.image(r"images\pop.jpg", width=345)
         espansione = st.expander("LIFENESS MEDIA")
         with espansione:
             st.text('lista')
 
     with col2:
-        st.image(r"C:\Users\user\Desktop\rebecca stemdays webby\streamlit\images\rb.jpg", width=345)
+        st.image(r"images\rb.jpg", width=345)
         espansione = st.expander("POPOLARITA' MEDIA")
         with espansione:
             st.text('lista')
