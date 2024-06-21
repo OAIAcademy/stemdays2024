@@ -30,4 +30,5 @@ col1.pyplot(pie)
 
 col1, col2 = st.columns(2)
 col1 = st.button([]) #mettici le features
-col1.pyplot() #plotta i generi per features barplot
+pie = plot_pie()
+col1.pyplot(pie) #plotta i generi per features barplot
