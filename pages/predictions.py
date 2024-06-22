@@ -9,12 +9,12 @@ df = pd.read_csv("data/songs_with_prediction.csv")
 features = ['danceability', 'energy', 'loudness', 'mode', 'speechiness',
             'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'views']
 #load model
-@st.cache_data()
 def load_model():
     with open('data/model.pkl', 'rb') as f:
         model = pickle.load(f)
 
     return model
+
 
 model = load_model()
 
@@ -23,9 +23,7 @@ def predict_genre():
 
     values = pd.DataFrame(columns=features)
     l = round(len(features) / 2)
-    st.write(l)
     first_features = features[:l]
-    st.write(first_features)
     cols = st.columns(len(first_features))
     for col, feature in zip(cols, first_features):
         val = col.slider(feature, min_value=df[feature].min(), max_value=df[feature].max())
