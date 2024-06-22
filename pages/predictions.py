@@ -40,9 +40,4 @@ def predict_genre():
     st.write(prediction)
 
 
-
-
-
-
-
 predict_genre()
