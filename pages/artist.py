@@ -1,34 +1,60 @@
 import streamlit as st
-import pandas as pd
 from streamlit_carousel import carousel
 import pandas as pd
+import re
+
+from utils import generate_wordcloud
 
 df = pd.read_csv("data/songs_with_prediction.csv")
+
+
+def get_chorus(text):
+    chorus_pattern = re.compile(r"\[Chorus\]\n((.*\n)+?)(?=\[|\Z)")
+    chorus_match = chorus_pattern.search(text)
+    if chorus_match:
+        chorus = chorus_match.group(1).strip()
+    else:
+        lines = text.strip().split('\n')
+        chorus = '\n'.join(lines[:4])
+
+    return chorus
 
 
 def logo():
     st.image("images/MagicEraser_240620_165341.png")
 
-def banner_info ():
-    col1, col2 = st.columns(2)
+def banner_info(artist):
+    genre = df.loc[df["artists"] == artist]["tag"].value_counts().index[0]
+    lyrics = df.loc[df["artists"] == artist].sort_values("popularity", ascending=False)["lyrics"].values[0]
+    track_name = df.loc[df["artists"] == artist].sort_values("popularity", ascending=False)["track_name"].values[0]
+
+    chorus = get_chorus(lyrics)
+    col1, col2= st.columns([5, 2])
 
     with col1:
-        st.image("images/chrisbrown.jpg", width=230) #immagine se nei top 5
+        st.title(artist)
+        st.header(f"Genere musicale: {genre}") #genere predominante dell'artista
+        st.text(f"{chorus}") #ritornello canzone più popolare pe rl'artista
+        st.write(f"<i>({track_name})</i>", unsafe_allow_html=True)
 
     with col2:
-        st.title("Chris Brown") #nome persona
-        st.header("Genere musicale: Rb") #genere predominante dell'artista
-        st.text("You don't know what you did, did to me, \nyour body lightweight speaks to me") #ritornello canzone più popolare pe rl'artista
+        st.title("")
+        st.write("")
+        try:
+            st.image(f"images/{artist}.jpg") #il nome dell'immagine deve essere uguale al nome dell'artista e in formato jpg
+        except:
+            pass
 
-def word_cloud ():
-    #codice word cloud, immagine ?
-    st.image("images/wcdiprova.gif")
+
+def word_cloud(artist):
+    wordcloud = generate_wordcloud(df=df, selection=artist, column="artists", title="")
+    st.pyplot(wordcloud)
 
 def primi_grafici() :
     col1, col2 = st.columns(2)
 
     with col1:
-        st.image("images/chrisbrown.jpg")
+        st.image("images/Chris Brown.jpg")
         espansione = st.expander("TOP 3 HITS")
         with espansione:
             st.text('lista')
@@ -55,16 +81,18 @@ def secondi_grafici():
             st.text('lista')
 
 def disclaimer ():
-    st.text("! Eventuali immagini, grafici e informazioni potrebbero non essere reperibili per tutti gli artisti, avendo a disosizione un database limitato.")
+    st.warning("! Eventuali immagini, grafici e informazioni potrebbero non essere reperibili per tutti gli artisti, avendo a disosizione un database limitato.")
 
 logo()
 
-option = st.selectbox(
+artist = st.selectbox(
     "Seleziona l'artista",
-    (["Chris Brown", "ABBA", "Arctic Monkeys", "Kids Bops", "Ariana Grande", "Lady Gaga"]), help="Seleziona un artista o inizia a scrivere sulla barra per vedere le opzioni", placeholder="Choose an option", index=0)
+    df.groupby("artists")["popularity"].mean().sort_values(ascending=False).index,
+    help="Seleziona un artista o inizia a scrivere sulla barra per vedere le opzioni",
+    placeholder="Choose an option", index=0)
 
-banner_info()
+banner_info(artist)
 disclaimer ()
-word_cloud()
+word_cloud(artist)
 primi_grafici()
 secondi_grafici()

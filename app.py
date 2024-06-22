@@ -16,7 +16,7 @@ def gli_artisti_piu_cercati() :
     col1, col2 = st.columns(2)
 
     with col1:
-        st.image("images/chrisbrown.jpg")
+        st.image("images/Chris Brown.jpg")
         espansione = st.expander("TOP 5 artisti più ascoltati")
         with espansione:
             st.text('lista')
