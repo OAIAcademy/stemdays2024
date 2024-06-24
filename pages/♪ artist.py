@@ -38,7 +38,6 @@ def artist_info(artist):
 
     with col2:
         st.title("")
-        st.write("")
         try:
             st.image(f"images/{artist}.jpg") #il nome dell'immagine deve essere uguale al nome dell'artista e in formato jpg
         except:
