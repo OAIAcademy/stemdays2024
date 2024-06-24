@@ -70,14 +70,24 @@ def suggest_songs(genre, features):
     for _, song in df_sorted.head(3).iterrows():
         artist = song["artists"]
         track_name = song["track_name"]
-        genre = song["tag"]
         st.write(f"♪ :violet[<b>{track_name}</b>] by <i>{artist}</i>", unsafe_allow_html=True)
 
 
 def info_about_model():
 
     with st.expander("Scopri di più sulla rete neurale"):
-        st.text("performance")
+        st.write("""Per predire il genere musicale di una canzone a partire dalle sue caratteristiche, abbiamo allenato una rete neurale.
+        \n1. Abbiamo selezionato le caratteristiche rilevanti (<b>:violet[feature selection]</b>) 🤏
+        \n2. Abbiamo suddiviso i dati in 2 parti: 70% di training e 30% di test (<b>:orange[splitting]</b>) ✂️
+        \n3. Abbiamo allenato la rete sui dati di training, cercando i parametri migliori (<b>:violet[fine tuning]</b>) 🧠
+        \n4. Abbiamo misurato la performance del modello sul training e sul test set (<b>:orange[testing]</b>) 📐
+        \nEcco com'è andata!
+         """, unsafe_allow_html=True)
+        col1, col2 = st.columns(2)
+        col1.image("images/confusion_matrix.png")
+        col2.write("""- Il modello predice molto bene il <i>rock</i> (accuratezza del 75%) e il <i>pop</i> (accuratezza del 71%)
+        \n- Confonde il <i>rap</i> con il <i>pop</i> in quasi la metà dei casi
+        \n- Tende a classificare <i>country</i>, <i>r&b</i> e altri generi (<i>misc</i>) come <i>pop</i>""", unsafe_allow_html=True)
 
 
 st.title("Rete neurale")
