@@ -9,40 +9,10 @@ df = pd.read_csv("data/songs_with_prediction.csv")
 def introduzione():
     st.image("images/MagicEraser_240620_165341.png")
 
-#def carosello_foto() :
+#def carosello_foto():
 
 
-def gli_artisti_piu_cercati() :
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.image("images/Chris Brown.jpg")
-        espansione = st.expander("TOP 5 artisti più ascoltati")
-        with espansione:
-            st.text('lista')
-
-    with col2:
-        st.image("images/bennyblanco.jpg")
-        espansione = st.expander("TOP 5 artisti meno ascoltati")
-        with espansione:
-            st.text('lista')
-
-def i_generi_piu_cercati():
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.image("images/pop.jpg", width=345)
-        espansione = st.expander("Distribuzione per genere")
-        with espansione:
-            st.text('grafico')
-
-    with col2:
-        st.image("images/rb.jpg", width=345)
-        espansione = st.expander("TOP 5 canzoni più ascoltate")
-        with espansione:
-            st.text('lista')
-
-def carosello ():
+def carosello():
     test_items = [
         dict(
             title="Slide 1",
@@ -60,35 +30,36 @@ def carosello ():
             img="https://img.freepik.com/free-photo/aerial-beautiful-shot-seashore-with-hills-background-sunset_181624-24143.jpg?w=1380&t=st=1688825798~exp=1688826398~hmac=f623f88d5ece83600dac7e6af29a0230d06619f7305745db387481a4bb5874a0",
         ),
     ]
-    carousel(items=test_items, width=5)
+    carousel(items=test_items)
 
-def side_menu ():
+
+def side_menu():
     # 2. horizontal menu
-    selected2 = option_menu(None, ["Home + US!", "Artists", "Stats", 'Predictions'],
-                            icons=['house', 'cloud-upload', "list-task", 'gear'],
-                            menu_icon="cast", default_index=0, orientation="horizontal")
+    page = option_menu(
+        None, ["Home + US!", "Artist", "Stats", 'Predictions'],
+        icons=['house', 'music-note', "bar-chart", 'gear'], #https://icons.getbootstrap.com/
+        menu_icon="cast", default_index=0, orientation="horizontal"
+    )
+    if page == "Stats":
+        st.switch_page(page="pages/📊 stats.py")
+    if page == "Artist":
+        st.switch_page(page="pages/♪ artist.py")
+    if page == "Predictions":
+        st.switch_page(page="pages/🔮️predictions.py")
+    # Use the custom class in a container
 
-def numeri ():
-    col1, col2, col3 = st.columns(3)
 
-    col1.metric("Canzoni totali", "17360")
-    col2.metric("Artisti", "5630")
-    col3.metric("Generi", "6")
+def about_us():
+    st.header("About US!")
+    st.subheader("I membri del team")
+    st.text("//")
+    st.subheader("Il progetto")
+    st.text("//")
 
-def about_us ():
-    st.header ("About US!")
-    st.subheader ("I membri del team")
-    st.text ("//")
-    st.subheader ("Il progetto")
-    st.text ("//")
 
 introduzione()
 side_menu()
 carosello()
-numeri()
-st.title("LE CLASSIFICHE PIU POPOLARI !!!")
-gli_artisti_piu_cercati()
-i_generi_piu_cercati()
-st.divider ()
-about_us ()
-#artist = st.text_area("Cerca per il tuo artista!")
+
+st.divider()
+about_us()

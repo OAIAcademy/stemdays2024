@@ -2,8 +2,10 @@ import streamlit as st
 from streamlit_carousel import carousel
 import pandas as pd
 import re
-
+from scipy import stats
 from utils import generate_wordcloud
+
+from utils import logo
 
 df = pd.read_csv("data/songs_with_prediction.csv")
 
@@ -20,8 +22,7 @@ def get_chorus(text):
     return chorus
 
 
-def logo():
-    st.image("images/MagicEraser_240620_165341.png")
+
 
 def banner_info(artist):
     genre = df.loc[df["artists"] == artist]["tag"].value_counts().index[0]
@@ -50,40 +51,59 @@ def word_cloud(artist):
     wordcloud = generate_wordcloud(df=df, selection=artist, column="artists", title="")
     st.pyplot(wordcloud)
 
-def primi_grafici() :
+def primi_grafici(artist) :
     col1, col2 = st.columns(2)
 
     with col1:
-        st.image("images/Chris Brown.jpg")
-        espansione = st.expander("TOP 3 HITS")
+        st.image("images/tophit.jpeg")
+        espansione = st.expander("TOP HITS")
         with espansione:
-            st.text('lista')
+            top_hits = df.loc[df["artists"] == artist].sort_values("popularity", ascending=False)
+            for _, top_hit in top_hits.iterrows():
+                st.text(f"{top_hit['track_name']} ({top_hit['year']})")
 
+    #non abbastanza tracce per artista per mostrare i flow
     with col2:
-        st.image("images/bennyblanco.jpg")
-        espansione = st.expander("TOP 3 FLOPS")
+        st.image("images/popularity.jpeg")
+        espansione = st.expander("POPOLARITA' MEDIA")
+        popularity = df.loc[df["artists"] == artist]["popularity"].mean()
         with espansione:
-            st.text('lista')
+            if popularity >= 80:
+                st.metric(label="popularity", value=popularity, delta="very popular", delta_color="normal")
+            elif popularity < 80 and popularity >= 60:
+                st.metric(label="popularity", value=popularity, delta="popular", delta_color="normal")
+            else:
+                st.metric(label="popularity", value=popularity, delta="- not popular", delta_color="normal")
+
 
 def secondi_grafici():
     col1, col2 = st.columns(2)
 
     with col1:
-        st.image("images/pop.jpg", width=345)
-        espansione = st.expander("LIFENESS MEDIA")
+        st.image("images/danceability.jpeg")
+        espansione = st.expander("DANCEABILITY MEDIA")
+        danceability = round(df.loc[df["artists"] == artist]["danceability"].mean())
         with espansione:
-            st.text('lista')
+            if danceability >= 0.8:
+                st.metric(label="danceability", value=danceability, delta="very danceable", delta_color="normal")
+            elif danceability < 0.8 and danceability >= 0.6:
+                st.metric(label="danceability", value=danceability, delta="danceable", delta_color="normal")
+            else:
+                st.metric(label="danceability", value=danceability, delta="- not danceable", delta_color="normal")
+
 
     with col2:
-        st.image("images/rb.jpg", width=345)
-        espansione = st.expander("POPOLARITA' MEDIA")
+        st.image("images/speechiness.jpg")
+        espansione = st.expander("SPEECHINESS MEDIA")
+        speechiness = round(df.loc[df["artists"] == artist]["speechiness"].mean(), 2)
         with espansione:
-            st.text('lista')
+            st.metric(label="speechiness", value=speechiness, delta_color="off")
+
+
 
 def disclaimer ():
     st.warning("! Eventuali immagini, grafici e informazioni potrebbero non essere reperibili per tutti gli artisti, avendo a disosizione un database limitato.")
 
-logo()
 
 artist = st.selectbox(
     "Seleziona l'artista",
@@ -94,5 +114,9 @@ artist = st.selectbox(
 banner_info(artist)
 disclaimer ()
 word_cloud(artist)
-primi_grafici()
+primi_grafici(artist)
 secondi_grafici()
+
+col1, col2, col3 = st.columns([1,2,1])
+with col2:
+    logo()
