@@ -4,26 +4,22 @@ import pandas as pd
 import re
 from scipy import stats
 from utils import generate_wordcloud
-from streamlit_option_menu import option_menu
+from streamlit_navigation_bar import st_navbar
 
 from utils import logo
 
+
 df = pd.read_csv("data/songs_with_prediction.csv")
 
-def side_menu():
-    # 2. horizontal menu
-    page = option_menu(
-        None, ["Home + US!", "Artist", "Stats", 'Predictions'],
-        icons=['house', 'music-note', "bar-chart", 'gear'], #https://icons.getbootstrap.com/
-        menu_icon="cast", default_index=0, orientation="horizontal"
-    )
+def side_menu(selected_page):
+    page=st_navbar(["Home + US!", "Artist", "Stats", 'Predictions'], selected=selected_page)
+    if page == "Home + US!":
+        st.switch_page(page="pages/app.py")
     if page == "Stats":
         st.switch_page(page="pages/📊 stats.py")
-    if page == "Artist":
-        st.switch_page(page="pages/♪ artist.py")
     if page == "Predictions":
-        st.switch_page(page="pages/🔮️ predictions.py")
-    # Use the custom class in a container
+        st.switch_page(page="pages/🔮️predictions.py")
+
 
 def get_chorus(text):
     chorus_pattern = re.compile(r"\[Chorus\]\n((.*\n)+?)(?=\[|\Z)")
@@ -116,7 +112,7 @@ def secondi_grafici():
 def disclaimer ():
     st.warning("! Eventuali immagini, grafici e informazioni potrebbero non essere reperibili per tutti gli artisti, avendo a dispsizione un dataset limitato.")
 
-side_menu()
+side_menu("Artist")
 
 st.title("Artisti")
 artist = st.selectbox(

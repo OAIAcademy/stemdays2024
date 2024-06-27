@@ -2,7 +2,8 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import pandas as pd
 from utils import generate_wordcloud, logo
-from streamlit_option_menu import option_menu
+from streamlit_navigation_bar import st_navbar
+
 
 st.set_page_config(initial_sidebar_state="collapsed")
 
@@ -21,6 +22,15 @@ music_features = [
 ]
 
 colors = {"pop":"#471ca8", "rock":"#884ab2", "country": "#ff930a", "rb": "#f24b04", "misc": "#d1105a", "rap": "#ff99b6"} #colori da cambiare
+
+def side_menu(selected_page):
+    page=st_navbar(["Home + US!", "Artist", "Stats", 'Predictions'], selected=selected_page)
+    if page == "Home + US!":
+        st.switch_page(page="app.py")
+    if page == "Artist":
+        st.switch_page(page="pages/♪ artist.py")
+    if page == "Predictions":
+        st.switch_page(page="pages/🔮️predictions.py")
 
 def show_metrics():
 
@@ -121,22 +131,7 @@ def canzoni():
                 popularity = song["popularity"]
                 st.write(f"♪ :violet[<b>{track_name}</b>] by <i>{artist}</i> ({year}) - popolarità: <b>{popularity}</b>", unsafe_allow_html=True)
 
-def side_menu():
-    # 2. horizontal menu
-    page = option_menu(
-        None, ["Home + US!", "Artist", "Stats", 'Predictions'],
-        icons=['house', 'music-note', "bar-chart", 'gear'], #https://icons.getbootstrap.com/
-        menu_icon="cast", default_index=0, orientation="horizontal"
-    )
-    if page == "Stats":
-        st.switch_page(page="pages/📊 stats.py")
-    if page == "Artist":
-        st.switch_page(page="pages/♪ artist.py")
-    if page == "Predictions":
-        st.switch_page(page="pages/🔮️ predictions.py")
-    # Use the custom class in a container
-
-side_menu()
+side_menu("Stats")
 st.title("Descrizione dei dati")
 
 show_metrics()
