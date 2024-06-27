@@ -12,12 +12,12 @@ from utils import logo
 df = pd.read_csv("data/songs_with_prediction.csv")
 
 def side_menu(selected_page):
-    page=st_navbar(["Home + US!", "Artist", "Stats", 'Predictions'], selected=selected_page)
+    page=st_navbar(["Home + US!", "♪ Artist", "📊 Stats", '🔮️Predictions'], selected=selected_page)
     if page == "Home + US!":
         st.switch_page(page="pages/app.py")
-    if page == "Stats":
+    if page == "📊 Stats":
         st.switch_page(page="pages/📊 stats.py")
-    if page == "Predictions":
+    if page == "🔮️Predictions":
         st.switch_page(page="pages/🔮️predictions.py")
 
 
@@ -112,7 +112,7 @@ def secondi_grafici():
 def disclaimer ():
     st.warning("! Eventuali immagini, grafici e informazioni potrebbero non essere reperibili per tutti gli artisti, avendo a dispsizione un dataset limitato.")
 
-side_menu("Artist")
+side_menu("♪ Artist")
 
 st.title("Artisti")
 artist = st.selectbox(

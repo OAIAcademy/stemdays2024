@@ -24,12 +24,12 @@ music_features = [
 colors = {"pop":"#471ca8", "rock":"#884ab2", "country": "#ff930a", "rb": "#f24b04", "misc": "#d1105a", "rap": "#ff99b6"} #colori da cambiare
 
 def side_menu(selected_page):
-    page=st_navbar(["Home + US!", "Artist", "Stats", 'Predictions'], selected=selected_page)
+    page=st_navbar(["Home + US!", "♪ Artist", "📊 Stats", '🔮️Predictions'], selected=selected_page)
     if page == "Home + US!":
         st.switch_page(page="app.py")
-    if page == "Artist":
+    if page == "♪ Artist":
         st.switch_page(page="pages/♪ artist.py")
-    if page == "Predictions":
+    if page == "🔮️Predictions":
         st.switch_page(page="pages/🔮️predictions.py")
 
 def show_metrics():
@@ -131,7 +131,7 @@ def canzoni():
                 popularity = song["popularity"]
                 st.write(f"♪ :violet[<b>{track_name}</b>] by <i>{artist}</i> ({year}) - popolarità: <b>{popularity}</b>", unsafe_allow_html=True)
 
-side_menu("Stats")
+side_menu("📊 Stats")
 st.title("Descrizione dei dati")
 
 show_metrics()

@@ -11,12 +11,12 @@ if "navbar_page" not in st.session_state:
     st.session_state["navbar_page"] = 0
 
 def side_menu(selected_page):
-    page=st_navbar(["Home + US!", "Artist", "Stats", 'Predictions'], selected=selected_page)
-    if page == "Artist":
+    page=st_navbar(["Home + US!", "♪ Artist", "📊 Stats", '🔮️Predictions'], selected=selected_page)
+    if page == "♪ Artist":
         st.switch_page(page="pages/♪ artist.py")
-    if page == "Stats":
+    if page == "📊 Stats":
         st.switch_page(page="pages/📊 stats.py")
-    if page == "Predictions":
+    if page == "🔮️Predictions":
         st.switch_page(page="pages/🔮️predictions.py")
 
 def introduzione():

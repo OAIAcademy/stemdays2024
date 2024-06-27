@@ -15,12 +15,12 @@ features = ['danceability', 'energy', 'loudness', 'mode', 'speechiness',
             'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'views']
 
 def side_menu(selected_page):
-    page=st_navbar(["Home + US!", "Artist", "Stats", 'Predictions'], selected=selected_page)
+    page=st_navbar(["Home + US!", "♪ Artist", "📊 Stats", '🔮️Predictions'], selected=selected_page)
     if page == "Home + US!":
         st.switch_page(page="app.py")
-    if page == "Artist":
+    if page == "♪ Artist":
         st.switch_page(page="pages/♪ artist.py")
-    if page == "Stats":
+    if page == "📊 Stats":
         st.switch_page(page="pages/📊 stats.py")
 
 
@@ -103,7 +103,7 @@ def info_about_model():
         \n- Confonde il <i>rap</i> con il <i>pop</i> in quasi la metà dei casi
         \n- Tende a classificare <i>country</i>, <i>r&b</i> e altri generi (<i>misc</i>) come <i>pop</i>""", unsafe_allow_html=True)
 
-side_menu("Predictions")
+side_menu("🔮️Predictions")
 st.title("Rete neurale")
 genre, values = predict_genre()
 col1, col2 = st.columns(2)
