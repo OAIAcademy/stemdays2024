@@ -129,11 +129,11 @@ def side_menu():
         menu_icon="cast", default_index=0, orientation="horizontal"
     )
     if page == "Stats":
-        st.switch_page(page="pages/📊stats.py")
+        st.switch_page(page="pages/📊 stats.py")
     if page == "Artist":
-        st.switch_page(page="pages/♪artist.py")
+        st.switch_page(page="pages/♪ artist.py")
     if page == "Predictions":
-        st.switch_page(page="pages/🔮️predictions.py")
+        st.switch_page(page="pages/🔮️ predictions.py")
     # Use the custom class in a container
 
 side_menu()
