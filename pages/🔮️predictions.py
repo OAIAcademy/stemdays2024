@@ -5,6 +5,9 @@ import streamlit as st
 import pandas as pd
 
 from utils import logo
+from streamlit_option_menu import option_menu
+
+st.set_page_config(initial_sidebar_state="collapsed")
 
 df = pd.read_csv("data/songs_with_prediction.csv")
 features = ['danceability', 'energy', 'loudness', 'mode', 'speechiness',
@@ -19,6 +22,20 @@ def load_model():
 
 model = load_model()
 
+def side_menu():
+    # 2. horizontal menu
+    page = option_menu(
+        None, ["Home + US!", "Artist", "Stats", 'Predictions'],
+        icons=['house', 'music-note', "bar-chart", 'gear'], #https://icons.getbootstrap.com/
+        menu_icon="cast", default_index=0, orientation="horizontal"
+    )
+    if page == "Stats":
+        st.switch_page(page="pages/📊stats.py")
+    if page == "Artist":
+        st.switch_page(page="pages/♪artist.py")
+    if page == "Predictions":
+        st.switch_page(page="pages/🔮️predictions.py")
+    # Use the custom class in a container
 
 def predict_genre():
 
@@ -27,7 +44,7 @@ def predict_genre():
     prediction = ""
     with st.form("Componi la tua canzone"):
         st.write("##### Componi la tua canzone")
-        st.write(":grey[Utilizza gli sliders per definire le caratterstiche e clicca il tasto per scoprire il genere musicale]")
+        st.write(":grey[Utilizza gli sliders per definire le caratteristiche e clicca il tasto per scoprire il genere musicale]")
         first_features = features[:l]
         cols = st.columns(len(first_features))
         for col, feature in zip(cols, first_features):
@@ -89,7 +106,7 @@ def info_about_model():
         \n- Confonde il <i>rap</i> con il <i>pop</i> in quasi la metà dei casi
         \n- Tende a classificare <i>country</i>, <i>r&b</i> e altri generi (<i>misc</i>) come <i>pop</i>""", unsafe_allow_html=True)
 
-
+side_menu()
 st.title("Rete neurale")
 genre, values = predict_genre()
 col1, col2 = st.columns(2)

@@ -5,6 +5,8 @@ import pandas as pd
 
 df = pd.read_csv("data/songs_with_prediction.csv")
 
+st.set_page_config(initial_sidebar_state="collapsed")
+
 
 def introduzione():
     st.image("images/MagicEraser_240620_165341.png")
@@ -15,19 +17,19 @@ def introduzione():
 def carosello():
     test_items = [
         dict(
-            title="Slide 1",
-            text="A tree in the savannah",
-            img="https://www.rollingstone.com/wp-content/uploads/2018/06/rs-4444-rectangle.jpg?w=624&h=422&crop=1"
+            title="US!",
+            text="Pausa pranzo!",
+            img=r"C:\Users\Marco Valentini\PycharmProjects\stemdays2024\images\carosello_pranzo.jpg"
         ),
         dict(
-            title="Slide 2",
-            text="A wooden bridge in a forest in Autumn",
-            img="https://img.freepik.com/free-photo/beautiful-wooden-pathway-going-breathtaking-colorful-trees-forest_181624-5840.jpg?w=1380&t=st=1688825780~exp=1688826380~hmac=dbaa75d8743e501f20f0e820fa77f9e377ec5d558d06635bd3f1f08443bdb2c1",
+            title="US!",
+            text="Al lavoro",
+            img=r"C:\Users\Marco Valentini\PycharmProjects\stemdays2024\images\carosello_computer.jpg",
         ),
         dict(
-            title="Slide 3",
-            text="A distant mountain chain preceded by a sea",
-            img="https://img.freepik.com/free-photo/aerial-beautiful-shot-seashore-with-hills-background-sunset_181624-24143.jpg?w=1380&t=st=1688825798~exp=1688826398~hmac=f623f88d5ece83600dac7e6af29a0230d06619f7305745db387481a4bb5874a0",
+            title="US!",
+            text="Team building",
+            img=r"C:\Users\Marco Valentini\PycharmProjects\stemdays2024\images\carosello_team.jpg",
         ),
     ]
     carousel(items=test_items)
@@ -41,9 +43,9 @@ def side_menu():
         menu_icon="cast", default_index=0, orientation="horizontal"
     )
     if page == "Stats":
-        st.switch_page(page="pages/📊 stats.py")
+        st.switch_page(page="pages/📊stats.py")
     if page == "Artist":
-        st.switch_page(page="pages/♪ artist.py")
+        st.switch_page(page="pages/♪artist.py")
     if page == "Predictions":
         st.switch_page(page="pages/🔮️predictions.py")
     # Use the custom class in a container
@@ -52,9 +54,17 @@ def side_menu():
 def about_us():
     st.header("About US!")
     st.subheader("I membri del team")
-    st.text("//")
+    st.text("Membri del team:\nCartello Rebecca\n"
+            "Costa Gaia\n"
+            "Musso Arianna\n"
+            "Radicioni Letizia\n"
+            "Tedeschi Anna\n"
+            "\nSupporto:\n"
+            "Antonia\n"
+            "Marco\n"
+            "Emiliano\n")
     st.subheader("Il progetto")
-    st.text("//")
+    st.caption("Il progetto StemDays è un'esperienza di empowerment e tecnologia rivolto alle ragazze per avvicinarle alle materie scientifiche e al mondo del coding contro gli stereotipi di genere che vedono sempre più spesso le ragazze allontanarsi da materie scientifiche perché spesso associate al genere maschile. L'ambiente di lavoro creato è un ambiente inclusivo, di collaborazione, e senza pregiudizi di alcun genere. In questo progetto abbiamo deciso di elaborare dati presi da Spotify dell'anno 2022. Abbiamo addestrato una rete neurale sulla base di questi dati per predirre il genere della canzone data; in più abbiamo analizzato i dati per genere e per artista, creando grafici e wordclouds.")
 
 
 introduzione()
